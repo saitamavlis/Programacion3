@@ -11,9 +11,9 @@ public class Alumno extends Persona {
 
 	@Override
 	public String toString() {
-		return  apellido + ", " + nombre + ", sexo:" + sexo + ", DNI:" + getDni()
-				+ ", Materias Aprobadas:" + getMateriasAprobadas() + ", Promedio:" + String.format("%.2f",getPromedio())
-				+ ", Id:" + getId() + ",  Edad: " + getEdad()+", Nro Le: "+getNroLe();
+		return " Id:" + getId() + ": " + apellido + ", " + nombre + ". Edad: " + getEdad() + ". Sexo: " + sexo
+				+ ". DNI: " + getDni() + ". Nro Le: " + getNroLe() + ". Materias Aprobadas: " + getMateriasAprobadas()
+				+ ". Promedio: " + String.format("%.2f", getPromedio());
 	}
 
 	public int getNroLe() {

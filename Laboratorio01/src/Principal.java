@@ -50,7 +50,7 @@ public class Principal {
 			if (((Alumno) p).getPromedio() > 7)
 				listMejoresProm.add(p);
 		}
-		Collections.sort(listMejoresProm, new AlumnoXPromedio());
+		Collections.sort(listMejoresProm, new AlumnoXPromedio().reversed());
 		System.out.println("Promedios mayor a 7 (Mayor a menor): ");
 		MostrarLista(listMejoresProm);
 	}
@@ -58,8 +58,8 @@ public class Principal {
 	private static void OrdenarAlumnosPromedio() {
 		// TODO Auto-generated method stub
 		Collections.sort(listAlumnos, new AlumnoXPromedio());
-		System.out.println("Promedio más bajo: " + listAlumnos.get(listAlumnos.size() - 1));
-		System.out.println("Promedio más alto: " + listAlumnos.get(0));
+		System.out.println("Promedio más bajo: " + listAlumnos.get(0));
+		System.out.println("Promedio más alto: " + listAlumnos.get(listAlumnos.size() - 1));
 		System.out.println("---------------------------");
 	}
 
@@ -118,22 +118,29 @@ public class Principal {
 			if (i <= 14) {
 
 				Alumno alumno = new Alumno(i + 1, apellido, nombre, (int) (Math.random() * (70 - 18) + 18), sexo, dni);
-				alumno.setMateriasAprobadas((int) (Math.random() * 20));// siempre me genera el mismo valor
-				numero = (int) (rdn.nextInt(1500));// siempre me genera el mismo valor
+				alumno.setMateriasAprobadas((int) (Math.random() * 20));
+				numero = (int) (rdn.nextInt(15000));
 				alumno.setNroLe(numero);
-				alumno.setPromedio(rdn.nextDouble() * 10);// siempre me genera el mismo valor
-				listAlumnos.add(alumno);
+				alumno.setPromedio(rdn.nextDouble() * 10);
+				//listAlumnos.add(alumno);
 				listPersonas.add(alumno);
 			} else {
-				Profesor profesor = new Profesor(i, apellido, nombre, (int) (Math.random() * (70 - 18) + 18), sexo, dni,
+				Profesor profesor = new Profesor(i, apellido, nombre, (int) (Math.random() * (75 - 25) + 25), sexo, dni,
 						titulo);
-				profesor.setLegajo((int) Math.random() * 200);
+				profesor.setLegajo(rdn.nextInt(1000));
 
 				// profesor.setTitulo(titulo);
-				listProfesores.add(profesor);
+				//listProfesores.add(profesor);
 				listPersonas.add(profesor);
 			}
 
+		}
+		//Generamos listas de alumnos y profesores a partir de lista de personas
+		for(Persona p: listPersonas) {
+			if(p instanceof Alumno) 
+				listAlumnos.add(p);
+			else
+				listProfesores.add(p);
 		}
 	}
 
